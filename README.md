@@ -19,3 +19,5 @@ The news crawler is a web crawler that crawls news from different sources and se
 The following news portals are consumed by the crawler:
 
 * G1 (http://g1.globo.com/)
+
+* CNN Brasil (https://www.cnnbrasil.com.br/)
