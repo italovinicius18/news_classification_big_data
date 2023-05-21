@@ -3,9 +3,8 @@ from scrapy.crawler import CrawlerProcess
 from scrapy.utils.project import get_project_settings
 
 from bs4 import BeautifulSoup
-import re
 
-from urls import data
+from news.news.spiders.urls import data
 
 
 class G1Spider(Spider):
@@ -92,6 +91,31 @@ class CNNSpider(Spider):
 
 
 settings = get_project_settings()
+
+# logging.info(settings)
+
+# settings["ITEM_PIPELINES"] = {
+#     "os_scrapy_kafka_pipeline.KafkaPipeline": 300,
+# }
+
+# settings["KAFKA_PRODUCER_BROKERS"] = ["localhost:9092"]
+
+# settings["KAFKA_PRODUCER_TOPIC"] = "news_raw"
+
+# settings = {}
+
+# settings["EXTENSIONS"] = {
+#     'scrapy_kafka_export.KafkaItemExporterExtension': 1,
+# }
+
+# settings["KAFKA_EXPORT_ENABLED"] = True
+
+# settings["KAFKA_BROKERS"] = [
+#     'localhost:9092'
+# ]
+
+# settings["KAFKA_TOPIC"] = 'test-topic'
+
 process = CrawlerProcess(settings)
 
 process.crawl(G1Spider)
