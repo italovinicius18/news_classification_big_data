@@ -1,6 +1,5 @@
 version: '3'
 
-
 services:
   db:
     container_name: db-news
@@ -21,8 +20,6 @@ services:
       timeout: 5s
       retries: 5
 
-
-    
   producer:
     container_name: producer-news
     build:
@@ -31,6 +28,39 @@ services:
     depends_on:
       db:
         condition: service_healthy
+    networks:
+      - db-network
+  
+  dask-scheduler:
+    container_name: dask-scheduler
+    image: ghcr.io/dask/dask:latest
+    hostname: scheduler
+    ports:
+      - "8786:8786"
+      - "8787:8787"
+    command: ["dask-scheduler"]
+
+  dask-worker:
+    image: ghcr.io/dask/dask:latest
+    command: ["dask-worker", "tcp://scheduler:8786"]
+    # For Docker swarm you can specify multiple workers, this is ignored by `docker-compose up`
+    deploy:
+      replicas: 2
+
+  dask-notebook:
+    container_name: dask-notebook
+    image: ghcr.io/dask/dask-notebook:latest
+    ports:
+      - "8888:8888"
+    environment:
+      - DASK_SCHEDULER_ADDRESS="tcp://scheduler:8786"
+    volumes:
+      - ./notebooks:/home/jovyan/work
+    command: >
+      start-notebook.sh --NotebookApp.token=''
+    depends_on:
+      - dask-scheduler
+      - dask-worker
     networks:
       - db-network
 
