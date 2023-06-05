@@ -14,6 +14,8 @@ g1 = [
     "https://g1.globo.com/pop-arte/",
 ]
 
-cnn_brasil = [
-    "https://www.cnnbrasil.com.br/sitemap_index.xml"
-]
+cnn_brasil = ["https://www.cnnbrasil.com.br/sitemap_index.xml"]
+
+g1_site_map = ["https://g1.globo.com/sitemap/g1/sitemap.xml"]
+
+uol_site_map = ["https://noticias.uol.com.br/sitemap/index.xml"]
