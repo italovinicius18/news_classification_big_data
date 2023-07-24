@@ -1,0 +1,19 @@
+version: "3.1"
+
+services:
+  db-spark:
+    container_name: db-spark
+    image: postgres:13
+    ports:
+      - 5432:5432
+    volumes:
+      - ../producer/data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: news
+      POSTGRES_PASSWORD: news
+      POSTGRES_DB: news_db
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U news -d news_db -p 5432"]
+      interval: 10s
+      timeout: 5s
+      retries: 5

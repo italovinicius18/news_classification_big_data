@@ -1,0 +1,19 @@
+- Introdução
+    - Parágrafos iniciais
+    - Justificativa
+    - Objetivos gerais e específicos
+    - Organização do trabalho - O que vem no outros capítulos
+- Referencial teórico
+    - Levantamento de bibliotecas
+    - Levantamento de trabalhos relacionados
+    - Modelos de embedding
+    - Modelos de classificação
+    - Modelos de linguagem
+- Materiais e métodos
+    - Pipelines de processamento
+    - Crawler
+    - Dados
+    - Pré-processamento
+    - Modelos
+    - Experimentos
+- Cronograma
